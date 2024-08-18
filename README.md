@@ -49,7 +49,7 @@ npm run dev
 yarn dev
 ```
 
-### How It Works
+## How It Works
 
 1. **Voice Initialization**: Upon loading, the app initializes speech synthesis and speech recognition. Available voices are loaded for the user to select.
 2. **Speech Recognition**: When a key is pressed down, the app begins recognizing speech. Upon releasing the key, speech recognition stops.
@@ -59,3 +59,15 @@ yarn dev
 - Withdraw Money: Say "withdraw [amount] naira" to withdraw a specific amount.
 - Deposit Money: Say "deposit [amount] naira" to deposit a specific amount.
 End Session: Say "cancel" to end the session.
+
+## Screenshot
+
+![HomeScreen Screen](screenshots/home_screen.png)
+
+## Contact
+
+For any questions or issues, please contact [MrKhay](https://x.com/iKhayDev).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
