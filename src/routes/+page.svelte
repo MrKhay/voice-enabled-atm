@@ -58,6 +58,7 @@
 	});
 
 	async function sayIt(msg: string): Promise<void> {
+		await new Promise((resolve) => setTimeout(resolve, 500));
 		if (!loading) {
 			isSpeaking = true;
 			return new Promise<void>((resolve) => {
