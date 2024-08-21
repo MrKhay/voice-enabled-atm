@@ -118,7 +118,7 @@
 						}
 					}
 					// Update finalTranscript with final results only
-					finalTranscript = finalTranscript + finalTranscriptUpdate;
+					finalTranscript = removeDuplicateWords(finalTranscript + finalTranscriptUpdate);
 					promotState();
 				};
 
@@ -207,7 +207,7 @@
 			let prompt = finalTranscript.toLocaleLowerCase();
 
 			switch (true) {
-				case prompt == 'cancel':
+				case prompt == 'cancel' || 'cancels':
 					sayIt('Session Ended');
 					sessionEnded = true;
 					break;
@@ -218,11 +218,11 @@
 					});
 					sessionEnded = true;
 					break;
-				case prompt == 'repeat instruction':
+				case prompt == 'repeat instruction' || 'repeat' || 'repeat instructions' || 'repeats':
 					sayIt(instructionsMsg);
 					break;
 
-				case prompt == 'balance' || 'acccount balance':
+				case prompt == 'balance' || 'balances' || 'acccount balance' || 'account balances':
 					sayIt(balanceMsg);
 					break;
 
@@ -245,6 +245,22 @@
 			// Clear finalTranscript after processing the command
 			finalTranscript = '';
 		}
+	}
+
+	function removeDuplicateWords(input: string): string {
+		// Split the input string into words
+		const words = input.split(/\s+/);
+
+		// Use a Set to store unique words
+		const uniqueWords = new Set<string>();
+
+		// Iterate over the words and add them to the Set
+		for (const word of words) {
+			uniqueWords.add(word);
+		}
+
+		// Join the unique words back into a string
+		return Array.from(uniqueWords).join(' ');
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
