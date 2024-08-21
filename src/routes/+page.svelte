@@ -104,9 +104,11 @@
 					console.log('Speech recognition started.');
 				};
 
-				recognizer.onresult = (event: any) => {
+				recognizer.onresult = async (event: any) => {
 					let interimTranscript = '';
 					let finalTranscriptUpdate = '';
+					// Add a delay of 500 milliseconds
+					await new Promise((resolve) => setTimeout(resolve, 500));
 					for (let i = event.resultIndex; i < event.results.length; i++) {
 						const result = event.results[i];
 						if (result.isFinal) {
@@ -118,8 +120,6 @@
 					// Update finalTranscript with final results only
 					finalTranscript = finalTranscript + finalTranscriptUpdate;
 					promotState();
-
-					console.log(finalTranscript);
 				};
 
 				recognizer.onerror = (event: any) => {
