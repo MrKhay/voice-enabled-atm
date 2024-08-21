@@ -107,20 +107,21 @@
 				recognizer.onresult = async (event: any) => {
 					let interimTranscript = '';
 					let finalTranscriptUpdate = '';
+
 					// Add a delay of 500 milliseconds
 
 					for (let i = event.resultIndex; i < event.results.length; i++) {
 						const result = event.results[i];
+
 						if (result.isFinal) {
+							// Update finalTranscript with final results only
 							finalTranscriptUpdate += result[0].transcript;
-						} else {
-							interimTranscript += result[0].transcript;
+							finalTranscript = removeDuplicateWords(finalTranscriptUpdate);
+							console.log('Final Result: ', result[0].transcript);
+							promotState();
+							break;
 						}
 					}
-					// Update finalTranscript with final results only
-					await new Promise((resolve) => setTimeout(resolve, 800));
-					finalTranscript = removeDuplicateWords(finalTranscript + finalTranscriptUpdate);
-					promotState();
 				};
 
 				recognizer.onerror = (event: any) => {
