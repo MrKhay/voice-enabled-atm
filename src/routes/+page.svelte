@@ -8,6 +8,7 @@
 	let finalTranscript = '';
 	let recognizing = false;
 	let isSpeaking = false;
+	let voicePromt = '';
 	let recognizer: any;
 	let voices: SpeechSynthesisVoice[] = [];
 	let balance = 45000;
@@ -80,6 +81,13 @@
 		}
 	}
 
+	function promotState() {
+		if (finalTranscript !== '') {
+			voicePromt = finalTranscript;
+			console.log('CALL: ', voicePromt);
+		}
+	}
+
 	function initSpeechRecognition() {
 		if (typeof window !== 'undefined') {
 			if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -109,6 +117,9 @@
 					}
 					// Update finalTranscript with final results only
 					finalTranscript = finalTranscript + finalTranscriptUpdate;
+					promotState();
+
+					console.log(finalTranscript);
 				};
 
 				recognizer.onerror = (event: any) => {
@@ -275,6 +286,8 @@
 			{/each}
 		</select>
 	</div>
+
+	<p class=" text-white">{voicePromt}</p>
 
 	<!-- <button class=" btn btn-sm variant-outline-primary" on:click={startRecognition}
 		>Start Speech Recognition</button
