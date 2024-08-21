@@ -108,7 +108,7 @@
 					let interimTranscript = '';
 					let finalTranscriptUpdate = '';
 					// Add a delay of 500 milliseconds
-					await new Promise((resolve) => setTimeout(resolve, 500));
+
 					for (let i = event.resultIndex; i < event.results.length; i++) {
 						const result = event.results[i];
 						if (result.isFinal) {
@@ -118,6 +118,7 @@
 						}
 					}
 					// Update finalTranscript with final results only
+					await new Promise((resolve) => setTimeout(resolve, 500));
 					finalTranscript = removeDuplicateWords(finalTranscript + finalTranscriptUpdate);
 					promotState();
 				};
