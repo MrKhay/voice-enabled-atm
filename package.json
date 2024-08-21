@@ -8,8 +8,7 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --check .",
-    "format": "prettier --write ."
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@iconify/svelte": "^4.0.2",
@@ -35,6 +34,7 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.6.10",
+    "@sveltejs/adapter-netlify": "^4.3.3",
     "speak-tts": "^2.0.8",
     "text-to-speech-js": "^1.1.10"
   }

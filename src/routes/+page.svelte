@@ -18,12 +18,12 @@
 	let repeatMsg = 'I could not understand what you said, Kindly repeat it';
 	let instructionsMsg =
 		'This is a voice-enabled ATM service. Please listen to the following instructions:\n' +
-		'1. To speak, press down on any of the keyboard keys.\n' +
-		'2. To end the session, press down on any keyboard key and say CANCEL.\n' +
-		'3. To repeat instruction, press down on any keyboard key and say REPEAT INSTRUCTION.\n' +
-		'4. To withdraw money, press down on any keyboard key and say WITHDRAW then the amount you want to withdraw.\n' +
-		'5. To deposite money, press down on any keyboard key and say DEPOSITE then the amount you want to deposite.\n' +
-		'6. To know your account balance, press down on any keyboard key and say BALANCE.\n';
+		'1. To speak, press down on your screen.\n' +
+		'2. To end the session, press down on your screen and say CANCEL.\n' +
+		'3. To repeat instruction, press down on your screen key and say REPEAT INSTRUCTION.\n' +
+		'4. To withdraw money, press down on your screen key and say WITHDRAW then the amount you want to withdraw.\n' +
+		'5. To deposite money, press down on your screen key and say DEPOSITE then the amount you want to deposite.\n' +
+		'6. To know your account balance, press down on your screen key and say BALANCE.\n';
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
@@ -247,7 +247,11 @@
 	}
 </script>
 
-<div class="variant-soft-surface h-full w-full flex flex-col justify-center items-center gap-5">
+<div
+	class="variant-soft-surface h-full w-full flex flex-col justify-center items-center gap-5"
+	on:pointerdown={startRecognition}
+	on:pointerup={stopRecognition}
+>
 	<p class="h1">Welcome back 👋</p>
 	<p class="h3">Mr Mattew</p>
 	<Icon
@@ -271,13 +275,6 @@
 			{/each}
 		</select>
 	</div>
-
-	<input
-		type="text"
-		class=" input mx-10 text-white text-center"
-		bind:value={finalTranscript}
-		readonly
-	/>
 
 	<!-- <button class=" btn btn-sm variant-outline-primary" on:click={startRecognition}
 		>Start Speech Recognition</button
